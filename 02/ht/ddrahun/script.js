@@ -43,6 +43,7 @@ function isDeepEqual(objA, objB) {
           areObjects(objA[key], objB[key]) ||
           areArrays(objA[key], objB[key])
         ) {
+          if (objA[key] == objA && objB[key] == objB) continue;
           areObjectsEqual(objA[key], objB[key]);
         } else {
           if ((isNan(objA[key]) && isNan(objB[key])) || objA[key] === objB[key])
