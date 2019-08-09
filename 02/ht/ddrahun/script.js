@@ -65,14 +65,24 @@ function isDeepEqual(objA, objB) {
  * @return {function} функция с зафиксированным контекстом
  */
 function bind(func, context) {
-  return undefined;
+  return function() {
+    func.apply(context, arguments);
+  };
 }
 
+Function.prototype.myBind = myBind;
 /**
  * Реализовать метод .myBind для всех функций,
  * который работает так же как оригинальный .bind но не использует его внутри
  * (можно использовать фукнцию выше)
  */
+function myBind() {
+  return function() {
+    bind(this, arguments);
+  };
+  // why is it not working??
+  // this.apply(arguments)
+}
 
 /**
  * создать объект с волшебным свойством,
