@@ -76,12 +76,12 @@ Function.prototype.myBind = myBind;
  * который работает так же как оригинальный .bind но не использует его внутри
  * (можно использовать фукнцию выше)
  */
-function myBind() {
+function myBind(context) {
+  var func = this;
+
   return function() {
-    bind(this, arguments);
+    func.apply(context, arguments);
   };
-  // why is it not working??
-  // this.apply(arguments)
 }
 
 /**
