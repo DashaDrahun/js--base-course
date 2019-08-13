@@ -93,6 +93,18 @@ function myBind(context) {
  * console.log(o.magicProperty); // 7
  * console.log(o.magicProperty); // 8
  */
+let o = {
+  _number: 0,
+
+  get magicProperty() {
+    console.log(++this._number);
+  },
+
+  set magicProperty(value) {
+    this._number = value;
+    console.log(new Date() + " -- " + this._number);
+  }
+};
 
 /**
  * Создать конструктор с методами, так,
@@ -107,8 +119,35 @@ function myBind(context) {
  * calculate('*')(2)(3); // 6
  * Допустимые операции : + - * /
  */
-function calculate() {
-  /* put your code here */
+function calculate(input) {
+  var first;
+  var helper = {
+    "+": a => {
+      var res = callBack(a, "+");
+      return res ? res : first + a;
+    },
+    "-": a => {
+      var res = callBack(a, "-");
+      return res ? res : first - a;
+    },
+    "*": a => {
+      var res = callBack(a, "*");
+      return res ? res : first * a;
+    },
+    "/": a => {
+      var res = callBack(a, "/");
+      return res ? res : first / a;
+    }
+  };
+
+  return helper[input];
+
+  function callBack(number, prop) {
+    if (first === undefined) {
+      first = number;
+      return helper[prop];
+    }
+  }
 }
 
 /**
