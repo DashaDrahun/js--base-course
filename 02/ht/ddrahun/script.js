@@ -155,7 +155,8 @@ function calculate(input) {
  * new Singleton() === new Singleton
  */
 function Singleton() {
-  throw "undefined";
+  if (Singleton.instance) return Singleton.instance;
+  return (Singleton.instance = this);
 }
 
 /**
@@ -165,7 +166,10 @@ function Singleton() {
  * и сохраняет параметры в создаваемый объект с именами параметров
  */
 function ForceContructor(a, b, c) {
-  throw "undefined";
+  this.a = a;
+  this.b = b;
+  this.c = c;
+  return this;
 }
 
 /**
