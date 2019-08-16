@@ -166,10 +166,10 @@ function Singleton() {
  * и сохраняет параметры в создаваемый объект с именами параметров
  */
 function ForceContructor(a, b, c) {
+  if (this.constructor !== ForceContructor) return new ForceContructor(a, b, c);
   this.a = a;
   this.b = b;
   this.c = c;
-  return this;
 }
 
 /**
